@@ -39,9 +39,11 @@ function handleMetadataUpdate(event) {
 	if (event.changedMetadata.status) {
 
 		//Get the asset (which contains the preview url)
-		getAsset(event.assetId, (asset) => {
+		request({
+			url: '/services/search?q=id:' + event.assetId
+		}).then(result => {
+			var asset = result.hits[0];
 			var rating;
-
 			if (event.changedMetadata.status.newValue === "Final") {
 				rating = 5;
 				if (asset.previewUrl) {
@@ -59,22 +61,11 @@ function handleMetadataUpdate(event) {
 				url: '/services/update?id=' + event.assetId + '&metadata=' + JSON.stringify({ rating: rating }),
 				method: 'PUT'
 			}
-
 			request(options)
-		});
+		}).catch(err => {
+			console.log(err);
+		}) 
 	}
-}
-
-function getAsset(id, callback) {
-	var options = {
-		'url': '/services/search?q=id:' + id
-	}
-
-	request(options).then((result) => {
-		callback(result.hits[0]);
-	}).catch(err => {
-		console.log(err);
-	});
 }
 
 module.exports = exports;

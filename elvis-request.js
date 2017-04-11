@@ -47,7 +47,7 @@ module.exports = (config) => {
       var response = result[0];
       var body = parseBody(result);
 
-      if (body.errorcode) {
+      if (body && body.errorcode) {
         response.statusCode = body.errorcode;
         response.statusMessage = body.message;
       }
