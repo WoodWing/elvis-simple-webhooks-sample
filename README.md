@@ -35,11 +35,11 @@ After registering the webhook, the sample app will need the following variables 
   - `ELVIS_PASSWORD`: The password of the API user.
   - `WEBHOOK_SECRET_TOKEN`: The secret token of the webhook.
 
-You can set environment variables using `export [KEY]=[VALUE]`.
+You can set environment variables using `export [KEY]=[VALUE]`. Alternatively, you can use the `run.sh` script which exports these environment variables and starts the app.
 
 ### Save directory
 Preview files downloaded by the app are stored in `./final/`.
 To change this, set `ELVIS_SAVE_DIR` in your environment.
 
 ## Running the app
-You can start the app using `npm start`.
+You can start the app using `npm start` or, when configured `./run.sh`.
