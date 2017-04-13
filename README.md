@@ -22,7 +22,7 @@ After checking out the project, use `npm install` to install dependencies.
 The app will need to communicate with the Elvis REST API to download previews and update the rating. Therefore you will need to set up an API user. Further instructions, see the WoodWing [Help Center](https://helpcenter.woodwing.com/hc/en-us/articles/205655395).
 
 ### Setting up a webhook
-You can set up a webhook through the Management Console or the REST API. More instructions, see the WoodWing [Help Center](https://helpcenter.woodwing.com/hc/en-us/categories/200142445-Elvis-5-documentation).
+You can set up a webhook through the Management Console or the REST API. More instructions, see the WoodWing [Help Center](https://helpcenter.woodwing.com/hc/en-us/articles/115001884346).
 
 The app relies on the webhook using the `asset_update_metadata` event.
 
