@@ -2,17 +2,15 @@
 
 ## Introduction
 
-This is a simple example of how you can use webhooks to achieve automatic integrations with webhooks in Elvis.
+This simple integration sample shows how easy it is use the Elvis webhooks API. It's based on NodeJS and can be used as starting point for creating your own integrations. 
 
-The use-case is as follows:
+It provides the following functionality:
 
-If an asset's status is updated to "Final", the preview of the asset will be downloaded and
-saved in the specified download folder.
+If an asset's status is updated to "Final", the preview of the asset will be downloaded and saved in the specified download folder.
 
 Then, just for visual purposes, a 5-star rating will be set for that asset.
 
-If the "Final" status is removed from an asset, the preview is deleted and the asset will be
-given a 1-star rating.
+If the "Final" status is removed from an asset, the preview is deleted and the asset will be given a 1-star rating.
 
 ## Installation and Setup
 
