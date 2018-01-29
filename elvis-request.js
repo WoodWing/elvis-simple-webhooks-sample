@@ -5,6 +5,8 @@ Promise.promisifyAll(request, { multiArgs: true })
 
 module.exports = (config) => {
   
+  var csrfToken;
+
   function cloneObj(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
@@ -19,6 +21,7 @@ module.exports = (config) => {
 
   function authenticate() {
     var options = {
+   	  method: 'POST',
       url: (config.useBaseUrl ? '' : config.serverUrl) + '/services/login?username=' + config.username + '&password=' + config.password
     }
     console.log('Not logged in, logging in via:' + options.url);
@@ -28,6 +31,10 @@ module.exports = (config) => {
       if (!body.loginSuccess) {
         throw new HttpError(body.loginFaultMessage, 401, options);
       } else {
+        if (body.csrfToken) {
+          // Elvis 6+
+          csrfToken = body.csrfToken;
+        }
         return result;
       }
     });
@@ -41,6 +48,13 @@ module.exports = (config) => {
       else {
         options.url = config.serverUrl + options.url;
       } 
+    }
+
+    if (csrfToken) {
+       // Elvis 6+
+       options.headers = {
+        'X-CSRF-TOKEN': csrfToken
+      }
     }
 
     return request(options).then(result => {

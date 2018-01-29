@@ -59,7 +59,7 @@ function handleMetadataUpdate(event) {
 			//Update the rating
 			var options = {
 				url: '/services/update?id=' + event.assetId + '&metadata=' + JSON.stringify({ rating: rating }),
-				method: 'PUT'
+				method: 'POST'
 			}
 			request(options)
 		}).catch(err => {
