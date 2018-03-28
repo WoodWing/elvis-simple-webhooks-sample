@@ -1,6 +1,6 @@
 var HttpError = require('./http-error.js')
 var Promise = require('bluebird');
-var request = Promise.promisify(require('request').defaults({ jar: true }), { multiArgs: true });
+var request = Promise.promisify(require('request').defaults({ jar: true , pool: {maxSockets: 5}}), { multiArgs: true });
 Promise.promisifyAll(request, { multiArgs: true })
 
 module.exports = (config) => {
@@ -83,10 +83,19 @@ module.exports = (config) => {
 
   return (options) => {
     return requestWithBodyErrorHandling(cloneObj(options)).catch(error => {
+      var self = this;
       if (error.statusCode == 401) {
-        return authenticate().then(() => {
-          return requestWithBodyErrorHandling(options);
-        });
+        if (!self.auth) {
+            self.auth = authenticate().then(() => {
+                self.auth = null;
+                return requestWithBodyErrorHandling(options);
+            });
+            return self.auth;
+        } else {
+          return self.auth.then(() => {
+            return requestWithBodyErrorHandling(options);
+          });
+        }
       } else {
         throw error;
       }
