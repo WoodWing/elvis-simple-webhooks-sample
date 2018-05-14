@@ -3,6 +3,10 @@
   "private": true,
   "version": "1.0.0",
   "author": "Milco Majoor <milco.majoor@woodwing.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WoodWing/elvis-simple-webhooks-sample.git"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
