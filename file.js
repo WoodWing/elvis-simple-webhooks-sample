@@ -3,8 +3,8 @@
 * ----------
 * This module handles the downloading and removing of files.
 *
-* Note that this doesnt use the elvis-request module for making requests. It does use the
-* same cookie jar however, so it is authenticated. Not using the elvis-request module
+* Note that this doesnt use the assets-request module for making requests. It does use the
+* same cookie jar however, so it is authenticated. Not using the assets-request module
 * means that it doesnt support the auto-login feature when the session cookie expires.
 * However, the chances of this happening in this scenario are small, since other requests 
 * (that do support auto login) are made right before this is called.
@@ -15,7 +15,7 @@
 const URL = require('url');
 const fs = require('fs');
 const request = require('request').defaults({ jar: true });
-const dir = (process.env.ELVIS_SAVE_DIR) ? process.env.ELVIS_SAVE_DIR : './final';
+const dir = (process.env.ASSETS_SAVE_DIR) ? process.env.ASSETS_SAVE_DIR : './final';
 
 module.exports = function () {
 	var module = {};

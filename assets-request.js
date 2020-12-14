@@ -32,7 +32,7 @@ module.exports = (config) => {
         throw new HttpError(body.loginFaultMessage, 401, options);
       } else {
         if (body.csrfToken) {
-          // Elvis 6+
+          // Assets 6+
           csrfToken = body.csrfToken;
         }
         return result;
@@ -51,7 +51,7 @@ module.exports = (config) => {
     }
 
     if (csrfToken) {
-       // Elvis 6+
+       // Assets 6+
        options.headers = {
         'X-CSRF-TOKEN': csrfToken
       }
@@ -66,7 +66,7 @@ module.exports = (config) => {
         response.statusMessage = body.message;
       }
 
-      // console.log('Elvis Response ' + JSON.stringify({
+      // console.log('Assets Response ' + JSON.stringify({
       //   statusCode: response.statusCode,
       //   options: options
       // }, null, 2));
