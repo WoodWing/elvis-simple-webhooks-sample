@@ -8,13 +8,13 @@
 // =============================================================================
 const file = require('./file.js')();
 
-const serverUrl = process.env.ELVIS_SERVER_URL;
+const serverUrl = process.env.ASSETS_SERVER_URL;
 
-const request = require('./elvis-request.js')({
+const request = require('./assets-request.js')({
 	serverUrl: serverUrl,
 	useBaseUrl: true,
-	username: process.env.ELVIS_USERNAME,
-	password: process.env.ELVIS_PASSWORD,
+	username: process.env.ASSETS_USERNAME,
+	password: process.env.ASSETS_PASSWORD,
 	parseJSON: true
 });
 

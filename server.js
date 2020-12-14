@@ -1,14 +1,14 @@
 /**
 * server.js
 * ----------
-* NodeJS example of webhooks in Elvis.
+* NodeJS example of webhooks in Assets.
 * For setup instructions, please read the README.
 */
 
 // CHECK ENV VARS.
 // =============================================================================
-if (!process.env.ELVIS_SERVER_URL || !process.env.ELVIS_USERNAME || !process.env.ELVIS_PASSWORD || !process.env.WEBHOOK_SECRET_TOKEN) {
-	console.error('[server.js] Error: Specify ELVIS_SERVER_URL, ELVIS_USERNAME, ELVIS_PASSWORD and WEBHOOK_SECRET_TOKEN in environment.');
+if (!process.env.ASSETS_SERVER_URL || !process.env.ASSETS_USERNAME || !process.env.ASSETS_PASSWORD || !process.env.WEBHOOK_SECRET_TOKEN) {
+	console.error('[server.js] Error: Specify ASSETS_SERVER_URL, ASSETS_USERNAME, ASSETS_PASSWORD and WEBHOOK_SECRET_TOKEN in environment.');
 	process.exit(1);
 }
 
@@ -42,10 +42,10 @@ try {
 	var listener = app.listen(port);
 
 	console.log("=============");
-	console.log('Elvis WebHooks Sample running with the following settings:\n');
+	console.log('Assets WebHooks Sample running with the following settings:\n');
 	console.log('Port: ' + listener.address().port);
-	console.log('Elvis Server URL: ' + process.env.ELVIS_SERVER_URL);
-	console.log('Elvis API Username: ' + process.env.ELVIS_USERNAME);
+	console.log('Assets Server URL: ' + process.env.ASSETS_SERVER_URL);
+	console.log('Assets API Username: ' + process.env.ASSETS_USERNAME);
 	console.log('Webhook Secret Token: ' + process.env.WEBHOOK_SECRET_TOKEN);
 	console.log("=============\n");
 
@@ -73,7 +73,7 @@ app.post('/', (req, res, next) => {
 	req.on('end', () => {
 		//First validate the signature
 		if (validateSignature(signature, data)) {
-			//We send the response back to Elvis before handling the event, so the sample app won't keep the connection open while it's handling the event. This results in better performance.
+			//We send the response back to Assets before handling the event, so the sample app won't keep the connection open while it's handling the event. This results in better performance.
 			res.status(200).send();
 			eventhandler.handle(JSON.parse(data));
 		} else {
