@@ -4,11 +4,11 @@ var request = Promise.promisify(require('request').defaults({ jar: true , pool: 
 Promise.promisifyAll(request, { multiArgs: true })
 
 module.exports = (config) => {
-  
+
   var csrfToken;
 
   function cloneObj(obj) {
-    return JSON.parse(JSON.stringify(obj));
+    return {...obj};
   }
 
   function parseBody(result) {
@@ -47,7 +47,7 @@ module.exports = (config) => {
       }
       else {
         options.url = config.serverUrl + options.url;
-      } 
+      }
     }
 
     if (csrfToken) {
